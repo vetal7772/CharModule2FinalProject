@@ -3,12 +3,22 @@ package org.example.engine;
 public class Engine {
 
     public  void go() {
+        Thread creationIsland = new Thread(new IslandInit());
+        creationIsland.start();
         Thread plantRunnerThread = new Thread(new PlantRunner());
         plantRunnerThread.start();
          Thread animalRunnerThread = new Thread(new AnimalRunner());
          animalRunnerThread.start();
          Thread printInfo = new Thread(new StatisticInfo());
          printInfo.start();
+    }
+
+    public class IslandInit implements Runnable{
+
+        @Override
+        public void run() {
+            System.out.println("Create island from Map.jaml");
+        }
     }
     public class PlantRunner implements Runnable{
 
